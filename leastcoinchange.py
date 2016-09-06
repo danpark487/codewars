@@ -21,15 +21,20 @@ def coin_change(cash):
 	return final_count, sum(final_count)
 	
 def joes_solution(coins, value):
-    table = [None for x in range(value + 1)]
-    table[0] = []
-    for i in range(1, value + 1):
-        for coin in coins:
-            if coin > i: continue
-            elif not table[i] or len(table[i - coin]) + 1 < len(table[i]):
-                if table[i - coin] != None:
-                    table[i] = table[i - coin][:]
-                    table[i].append(coin)
+    """
+    This takes in a list of coin denominations as coins i.e. [1, 4, 5, 9]
+    and a value which is the change you want to give
+    """
+    table = [None for x in range(value + 1)] # creates a list with None as big as the change is i.e. if value = 4, table = [None, None, None, None, None] (0, 1, 2, 3, 4)
+    table[0] = [] # initializes the first element in table to be an empty list
+    for i in range(1, value + 1): # if value = 4 => [1, 2, 3, 4]
+        for coin in coins: # for each of the coin values i.e. if coins =[1, 4, 5, 9], coin 1 then 4 then 5 then 9
+            if coin > i: continue #if the coin denomination is bigger than i, just continue. 4 > 1, 2, 3 so it just continues.
+            elif not table[i] or len(table[i - coin]) + 1 < len(table[i]): #table[i] => None usually.  so if you do not None => True or len(table[4-3]) + 1 = len(None) + 1 = 2< len(table[i]) = 2<1
+                if table[i - coin] != None: # table[4 - 3] = table[0] = [] != None ==> true
+                    table[i] = table[i - coin][:] # table [1] = table [1 - 1][:]
+                    table[i].append(coin) # table[1].append(1)
+
 
     if table[-1] != None:
         print '%d coins: %s' % (len(table[-1]), table[-1])
