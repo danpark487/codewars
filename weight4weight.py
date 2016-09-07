@@ -30,7 +30,5 @@ def order_weight(strng):
 def joes_version(numstring):
 	num_list = numstring.split()
 	sum_list = [(sum(int(x) for x in num_list[i]), i) for i in range(len(num_list))]
-	sorted_sum_list = sorted(sum_list)
 	ordered = {x:num_list[x] for x in range(len(num_list))}
-	out_list = [ordered[x[1]] for x in sorted_sum_list]
-	return out_list
+	return [ordered[x[1]] for x in sorted(sum_list)]
