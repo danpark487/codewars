@@ -26,3 +26,11 @@ def order_weight(strng):
 		sum_digit_list.append(new_value)
 	sorted_list = [x for (y,x) in sorted(zip(sum_digit_list, strng_list))] # sort the original list by the sorted digit_sum_list
 	return " ".join(sorted_list)
+	
+def joes_version(numstring):
+	num_list = numstring.split()
+	sum_list = [(sum(int(x) for x in num_list[i]), i) for i in range(len(num_list))]
+	sorted_sum_list = sorted(sum_list)
+	ordered = {x:num_list[x] for x in range(len(num_list))}
+	out_list = [ordered[x[1]] for x in sorted_sum_list]
+	return out_list
