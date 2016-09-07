@@ -31,4 +31,5 @@ def joes_version(numstring):
 	num_list = numstring.split()
 	sum_list = [(sum(int(x) for x in num_list[i]), i) for i in range(len(num_list))]
 	ordered = {x:num_list[x] for x in range(len(num_list))}
-	return [ordered[x[1]] for x in sorted(sum_list)]
+	return " ".join(ordered[x[1]] for x in sorted(sum_list))
+
